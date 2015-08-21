@@ -6,7 +6,7 @@ import (
 )
 
 type Log struct {
-	Id                 bson.ObjectId      `bson:"_id" json:"-"`
+	Id                 bson.ObjectId      `bson:"_id" json:"id"`
 	Timestamp          string             `json:"timestamp" binding:"required"`
 	CreatedAt          time.Time          `bson:"created_at" json:"-"`
 	Location           Location           `json:"location" binding:"required"`
