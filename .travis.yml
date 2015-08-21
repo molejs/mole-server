@@ -5,9 +5,12 @@ go:
   - 1.4
   - 1.5
   - tip
+  
+services:
+  - mongodb
 
 install:
-  - go get -t -v .
+  - go get -t -v ./...
 
 script:
   - go test -v ./mole/...
