@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"os"
-"./mole"
+"github.com/molejs/mole-server/mole"
 )
 
 func getenv(k, defaultVal string) string {

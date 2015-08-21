@@ -1,4 +1,4 @@
-# mole-server [![Build Status](https://travis-ci.org/foo/mole-server.svg?branch=master)](https://travis-ci.org/foo/mole-server)
+# mole-server [![Build Status](https://travis-ci.org/molejs/mole-server.svg?branch=master)](https://travis-ci.org/molejs/mole-server)
 
 Mole server is one of the three independent packages that form the whole Mole service. It is a server with one endpoint to report logs and to retrieve them from the database.
 
@@ -7,7 +7,7 @@ All the reported logs must follow the **mole log specification**.
 ## Install
 
 ```
-go get https://github.com/foo/mole-server
+go get https://github.com/molejs/mole-server
 ```
 
 ## Configure and run
