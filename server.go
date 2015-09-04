@@ -42,6 +42,7 @@ func main() {
 
 	r.POST("/logs", dbMiddleware, mole.ReportHandler)
 	r.GET("/logs", dbMiddleware, mole.RetrieveHandler)
+	r.GET("/log/:id", dbMiddleware, mole.SingleLogHandler)
 
 	if cert != "" && key != "" {
 		r.RunTLS(addr, cert, key)

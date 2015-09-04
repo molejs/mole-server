@@ -77,3 +77,24 @@ func RetrieveHandler(c *gin.Context) {
 		})
 	}
 }
+
+func SingleLogHandler(c *gin.Context) {
+	var (
+		db = getDB(c)
+		ID = bson.ObjectIdHex(c.Params.ByName("id"))
+	)
+
+	var log Log
+	err := db.FindId(ID).One(&log)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": true,
+			"msg":   "internal server error",
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"error": false,
+			"log":   log,
+		})
+	}
+}
