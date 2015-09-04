@@ -2,8 +2,10 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/itsjamie/gin-cors"
+	"github.com/molejs/mole-server/mole"
 	"os"
-"github.com/molejs/mole-server/mole"
+	"time"
 )
 
 func getenv(k, defaultVal string) string {
@@ -27,6 +29,16 @@ func main() {
 		dbName       = getenv("MOLE_DB_NAME", "mole")
 		dbMiddleware = mole.DatabaseMiddleware(mongoAddr, dbName)
 	)
+
+	r.Use(cors.Middleware(cors.Config{
+		Origins:         "*",
+		Methods:         "PUT, POST",
+		RequestHeaders:  "Origin, Authorization, Content-Type",
+		ExposedHeaders:  "",
+		MaxAge:          50 * time.Second,
+		Credentials:     false,
+		ValidateHeaders: false,
+	}))
 
 	r.POST("/logs", dbMiddleware, mole.ReportHandler)
 	r.GET("/logs", dbMiddleware, mole.RetrieveHandler)
