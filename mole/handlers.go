@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"time"
-	_log "log"
 )
 
 func getDB(c *gin.Context) *mgo.Collection {
@@ -30,8 +29,7 @@ func ReportHandler(c *gin.Context) {
 		response gin.H
 	)
 
-	err := c.BindJSON(&log)
-	if err == nil {
+	if c.BindJSON(&log) == nil {
 		log.CreatedAt = time.Now()
 		log.Id = bson.NewObjectId()
 		if err := db.Insert(log); err != nil {
@@ -44,7 +42,6 @@ func ReportHandler(c *gin.Context) {
 			response = gin.H{"error": false}
 		}
 	} else {
-		_log.Println(err.Error())
 		status = http.StatusBadRequest
 		response = gin.H{
 			"error": true,
