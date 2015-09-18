@@ -36,9 +36,7 @@ type StracktraceLine struct {
 	Column   int `json:"column"`
 }
 
-type JSONObjectArray []map[string]interface{}
-
 type ActionStateHistory struct {
-	Action JSONObjectArray `json:"action"`
-	State  JSONObjectArray `json:"state"`
+	Action interface{} `json:"action"`
+	State  interface{} `json:"state"`
 }
