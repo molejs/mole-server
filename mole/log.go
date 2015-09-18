@@ -6,11 +6,11 @@ import (
 )
 
 type Log struct {
-	Id                 bson.ObjectId      `bson:"_id" json:"id"`
-	Timestamp          string             `json:"timestamp" binding:"required"`
-	CreatedAt          time.Time          `bson:"created_at" json:"-"`
-	Location           Location           `json:"location" binding:"required"`
-	Error              Error              `json:"error" binding:"required"`
+	Id                 bson.ObjectId        `bson:"_id" json:"id"`
+	Timestamp          string               `json:"timestamp" binding:"required"`
+	CreatedAt          time.Time            `bson:"created_at" json:"-"`
+	Location           Location             `json:"location" binding:"required"`
+	Error              Error                `json:"error" binding:"required"`
 	ActionStateHistory []ActionStateHistory `json:"action_state_history"`
 }
 
@@ -32,8 +32,8 @@ type Error struct {
 type StracktraceLine struct {
 	Function string `json:"function"`
 	File     string `json:"file"`
-	Line     int `json:"line"`
-	Column   int `json:"column"`
+	Line     int    `json:"line"`
+	Column   int    `json:"column"`
 }
 
 type ActionStateHistory struct {

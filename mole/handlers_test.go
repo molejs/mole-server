@@ -59,18 +59,18 @@ func (s *HandlersSuite) TestReportHandler(c *C) {
 	log.Error = Error{
 		"foo msg",
 		[]StracktraceLine{
-			{"fn1", "file1", "1", "1"},
-			{"fn2", "file2", "2", "2"},
+			{"fn1", "file1", 1, 1},
+			{"fn2", "file2", 2, 2},
 		},
 	}
-	log.ActionStateHistory = ActionStateHistory{
-		[]map[string]interface{}{
-			map[string]interface{}{"action1": true},
-			map[string]interface{}{"action2": true},
+	log.ActionStateHistory = []ActionStateHistory{
+		{
+			Action: bson.M{"action1": true},
+			State:  bson.M{"state1": true},
 		},
-		[]map[string]interface{}{
-			map[string]interface{}{"state1": true},
-			map[string]interface{}{"state2": true},
+		{
+			Action: bson.M{"action1": true},
+			State:  bson.M{"state1": true},
 		},
 	}
 	body, err := json.Marshal(log)
@@ -114,7 +114,7 @@ func createLog() Log {
 		CreatedAt:          time.Now(),
 		Location:           Location{},
 		Error:              Error{},
-		ActionStateHistory: ActionStateHistory{},
+		ActionStateHistory: []ActionStateHistory{},
 	}
 }
 
